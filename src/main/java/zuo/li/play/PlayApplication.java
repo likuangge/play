@@ -1,11 +1,13 @@
 package zuo.li.play;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author zuo.li
  */
+@MapperScan("zuo.li.play.dao")
 @SpringBootApplication
 public class PlayApplication {
 
