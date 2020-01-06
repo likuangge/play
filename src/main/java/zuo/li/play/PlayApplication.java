@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author zuo.li
  */
-@MapperScan("zuo.li.play.dao")
+@MapperScan("zuo.li.play.ocr.dao")
 @SpringBootApplication
 public class PlayApplication {
 

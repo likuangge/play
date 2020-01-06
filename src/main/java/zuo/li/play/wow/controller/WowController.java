@@ -1,4 +1,4 @@
-package zuo.li.play.controller.wow;
+package zuo.li.play.wow.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

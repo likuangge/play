@@ -6,6 +6,7 @@ package zuo.li.play.common.enums;
  * @Date: 2020/1/3 17:39
  */
 public enum FileTypeEnum {
+
     /**
      * 食营证办理加水印
      */
@@ -74,5 +75,4 @@ public enum FileTypeEnum {
     public String getIndex() {
         return index;
     }
-
 }

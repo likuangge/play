@@ -1,4 +1,4 @@
-package zuo.li.play.core.vo;
+package zuo.li.play.ocr.core.vo;
 
 import lombok.Getter;
 import lombok.Setter;

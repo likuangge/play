@@ -1,4 +1,4 @@
-package zuo.li.play.core.bo;
+package zuo.li.play.ocr.core.bo;
 
 import zuo.li.play.common.core.page.PageBO;
 

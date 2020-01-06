@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="zuo.li.play.dao.FileDao">
+<mapper namespace="zuo.li.play.ocr.dao.FileDao">
     <!-- 获取文件列表 -->
-    <select id="getFileList" parameterType="zuo.li.play.core.bo.FileBO" resultType="zuo.li.play.core.vo.FileVO">
+    <select id="getFileList" parameterType="zuo.li.play.ocr.core.bo.FileBO" resultType="zuo.li.play.ocr.core.vo.FileVO">
         SELECT
         id,
         file_type,
@@ -14,10 +14,38 @@
         limit #{offset},#{pageSize}
     </select>
     <!-- 获取文件数量 -->
-    <select id="countFile" parameterType="zuo.li.play.core.bo.FileBO" resultType="java.lang.Long">
+    <select id="countFile" parameterType="zuo.li.play.ocr.core.bo.FileBO" resultType="java.lang.Long">
         SELECT
         count(*)
         FROM
         t_upload_file
     </select>
+    <!-- 通过文件id获取文件详情 -->
+    <select id="getFileDetailByFileId" parameterType="java.lang.Long" resultType="zuo.li.play.ocr.core.entity.FileDetailDO">
+        SELECT *
+        FROM file_detail
+        WHERE
+        file_id = #{fileId}
+    </select>
+    <!-- 新增文件详情 -->
+    <insert id="insertFileDetail" parameterType="zuo.li.play.ocr.core.entity.FileDetailDO">
+        INSERT INTO
+        file_detail(society_code, name, type, principal, business_scope, create_date, operating_period, operating_place, file_id)
+        VALUES(#{societyCode}, #{name}, #{type}, #{principal}, #{businessScope}, #{createDate}, #{operatingPeriod}, #{operatingPlace}, #{fileId})
+    </insert>
+    <!-- 更新文件详情 -->
+    <update id="updateFileDetail" parameterType="zuo.li.play.ocr.core.entity.FileDetailDO">
+        UPDATE file_detail
+        SET
+        society_code = #{societyCode},
+        name = #{name},
+        type = #{type},
+        principal = #{principal},
+        business_scope = #{businessScope},
+        create_date = #{createDate},
+        operating_period = #{operatingPeriod},
+        operating_place = #{operatingPlace}
+        WHERE
+        file_id = #{fileId}
+    </update>
 </mapper>
