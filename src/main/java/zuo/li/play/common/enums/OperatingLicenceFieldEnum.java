@@ -5,7 +5,7 @@ package zuo.li.play.common.enums;
  * @Author: zuo.li
  * @Date: 2020/1/6 16:57
  */
-public enum FileFieldEnum {
+public enum OperatingLicenceFieldEnum {
 
     /**
      * 统一社会信用代码
@@ -62,7 +62,7 @@ public enum FileFieldEnum {
      * @param index 索引
      * @param name  值
      */
-    FileFieldEnum(int index, String name) {
+    OperatingLicenceFieldEnum(int index, String name) {
         this.index = index;
         this.name = name;
     }
@@ -75,7 +75,7 @@ public enum FileFieldEnum {
      * @return name
      */
     public static String getNameByIndex(int index) {
-        for (FileFieldEnum c : FileFieldEnum.values()) {
+        for (OperatingLicenceFieldEnum c : OperatingLicenceFieldEnum.values()) {
             if (c.getIndex() == index) {
                 return c.getName();
             }
@@ -88,8 +88,8 @@ public enum FileFieldEnum {
      * @param index 索引
      * @return name
      */
-    public static FileFieldEnum getByIndex(int index) {
-        for (FileFieldEnum c : FileFieldEnum.values()) {
+    public static OperatingLicenceFieldEnum getByIndex(int index) {
+        for (OperatingLicenceFieldEnum c : OperatingLicenceFieldEnum.values()) {
             if (c.getIndex() == index) {
                 return c;
             }

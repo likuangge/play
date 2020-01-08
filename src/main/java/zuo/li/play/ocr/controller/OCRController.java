@@ -3,22 +3,24 @@ package zuo.li.play.ocr.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import zuo.li.play.common.CommonConstants;
+import zuo.li.play.common.constants.CommonConstants;
 import zuo.li.play.common.core.page.PageAO;
 import zuo.li.play.common.core.page.PageBO;
 import zuo.li.play.common.core.result.PaginationResult;
 import zuo.li.play.common.core.result.ResultInfo;
+import zuo.li.play.common.enums.FileTypeEnum;
 import zuo.li.play.ocr.core.ao.FileAO;
 import zuo.li.play.ocr.core.bo.FileBO;
-import zuo.li.play.ocr.core.entity.FileDetailDO;
+import zuo.li.play.ocr.core.entity.FoodLicenceDetailDO;
+import zuo.li.play.ocr.core.entity.OperatingLicenceDetailDO;
 import zuo.li.play.ocr.core.vo.FileVO;
 import zuo.li.play.ocr.service.FileService;
+
+import java.util.Objects;
 
 /**
  * @Description: OCR接口
@@ -66,22 +68,28 @@ public class OCRController {
             fileService.fileAnalysis(fileAO);
             return ResultInfo.success();
         } catch (Exception e) {
-            log.error("错误信息:", e);
-            return ResultInfo.errorMessage("文件解析失败");
+            return ResultInfo.errorMessage(e.getMessage());
         }
     }
 
     /**
      * 获取文件详情
      *
-     * @param fileId 文件id
+     * @param fileAO 文件AO
      * @return 文件详情
      */
-    @GetMapping(value = "/getFileDetail")
-    public ResultInfo getFileDetail(@RequestParam Long fileId) {
+    @PostMapping(value = "/getFileDetail")
+    public ResultInfo getFileDetail(@RequestBody FileAO fileAO) {
         try {
-            FileDetailDO fileDetailDO = fileService.getFileDetailByFileId(fileId);
-            return ResultInfo.success(fileDetailDO);
+            if(Objects.equals(fileAO.getFileType(), FileTypeEnum.LICENCE_YYZZWC_WATERMARK.getIndex())) {
+                OperatingLicenceDetailDO operatingLicenceDetailDO = fileService.getOperatingLicenceDetailByFileId(fileAO.getFileId());
+                return ResultInfo.success(operatingLicenceDetailDO);
+            }
+            if(Objects.equals(fileAO.getFileType(), FileTypeEnum.LICENCE_SYZBL_WATERMARK.getIndex())) {
+                FoodLicenceDetailDO foodLicenceDetailDO = fileService.getFoodLicenceDetailByFileId(fileAO.getFileId());
+                return ResultInfo.success(foodLicenceDetailDO);
+            }
+            return ResultInfo.success();
         } catch (Exception e) {
             log.error("错误信息:", e);
             return ResultInfo.errorMessage("获取文件详情失败");

@@ -21,6 +21,11 @@ public class FileAO extends PageAO {
     private Long fileId;
 
     /**
+     * 文件类型
+     */
+    private String fileType;
+
+    /**
      * 文件路径
      */
     private String fileUrl;

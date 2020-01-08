@@ -2,7 +2,8 @@ package zuo.li.play.ocr.dao;
 
 import org.springframework.stereotype.Repository;
 import zuo.li.play.ocr.core.bo.FileBO;
-import zuo.li.play.ocr.core.entity.FileDetailDO;
+import zuo.li.play.ocr.core.entity.FoodLicenceDetailDO;
+import zuo.li.play.ocr.core.entity.OperatingLicenceDetailDO;
 import zuo.li.play.ocr.core.vo.FileVO;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface FileDao {
      * @param fileBO 文件BO
      * @return 文件列表
      */
-   List<FileVO> getFileList(FileBO fileBO);
+    List<FileVO> getFileList(FileBO fileBO);
 
     /**
      * 获取文件数量
@@ -32,24 +33,46 @@ public interface FileDao {
     Long countFile(FileBO fileBO);
 
     /**
-     * 通过文件id获取文件详情
+     * 通过文件id获取营业执照详情
      *
      * @param fileId 文件id
-     * @return 文件详情
+     * @return 营业执照详情
      */
-    FileDetailDO getFileDetailByFileId(Long fileId);
+    OperatingLicenceDetailDO getOperatingLicenceDetailByFileId(Long fileId);
 
     /**
-     * 新增文件详情
+     * 新增营业执照详情
      *
-     * @param fileDetailDO 文件详情DO
+     * @param operatingLicenceDetailDO 营业执照详情DO
      */
-    void insertFileDetail(FileDetailDO fileDetailDO);
+    void insertOperatingLicenceDetail(OperatingLicenceDetailDO operatingLicenceDetailDO);
 
     /**
-     * 更新文件详情
+     * 更新营业执照详情
      *
-     * @param fileDetailDO 文件详情DO
+     * @param operatingLicenceDetailDO 营业执照详情DO
      */
-    void updateFileDetail(FileDetailDO fileDetailDO);
+    void updateOperatingLicenceDetail(OperatingLicenceDetailDO operatingLicenceDetailDO);
+
+    /**
+     * 通过文件id获取食营证详情
+     *
+     * @param fileId 文件id
+     * @return 食营证详情
+     */
+    FoodLicenceDetailDO getFoodLicenceDetailByFileId(Long fileId);
+
+    /**
+     * 新增食营证详情
+     *
+     * @param foodLicenceDetailDO 食营证详情DO
+     */
+    void insertFoodLicenceDetail(FoodLicenceDetailDO foodLicenceDetailDO);
+
+    /**
+     * 更新食营证详情
+     *
+     * @param foodLicenceDetailDO 食营证详情DO
+     */
+    void updateFoodLicenceDetail(FoodLicenceDetailDO foodLicenceDetailDO);
 }

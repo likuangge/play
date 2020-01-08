@@ -1,17 +1,23 @@
 package zuo.li.play.common.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * @Description: 文件工具类
  * @Author: zuo.li
  * @Date: 2020/1/6 10:39
  */
+@Slf4j
 public class FileUtils {
 
     /**
@@ -78,6 +84,37 @@ public class FileUtils {
                 }
                 bos.close();
             }
+        }
+    }
+
+    /**
+     * 从远程服务器读取文件
+     *
+     * @param fileUrl 文件路径
+     * @return 文件流
+     * @throws IOException 异常
+     */
+    public static byte[] readFileFromRemote(String fileUrl) {
+        try {
+            URL url = new URL(fileUrl);
+            URLConnection urlConnection = url.openConnection();
+            HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
+            httpURLConnection.setConnectTimeout(5000);
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestProperty("Charset", "UTF-8");
+            httpURLConnection.connect();
+            int fileLength = httpURLConnection.getContentLength();
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(httpURLConnection.getInputStream());
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(fileLength);
+            byte[] buffer = new byte[1024];
+            int len1;
+            while (-1 != (len1 = bufferedInputStream.read(buffer, 0, 1024))) {
+                byteArrayOutputStream.write(buffer, 0, len1);
+            }
+            return byteArrayOutputStream.toByteArray();
+        } catch (Exception e) {
+            log.error("错误信息:", e);
+            throw new RuntimeException("获取远程文件失败");
         }
     }
 }

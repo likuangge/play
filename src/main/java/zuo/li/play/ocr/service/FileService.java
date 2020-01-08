@@ -3,7 +3,8 @@ package zuo.li.play.ocr.service;
 import zuo.li.play.common.core.result.PaginationResult;
 import zuo.li.play.ocr.core.ao.FileAO;
 import zuo.li.play.ocr.core.bo.FileBO;
-import zuo.li.play.ocr.core.entity.FileDetailDO;
+import zuo.li.play.ocr.core.entity.FoodLicenceDetailDO;
+import zuo.li.play.ocr.core.entity.OperatingLicenceDetailDO;
 import zuo.li.play.ocr.core.vo.FileVO;
 
 /**
@@ -29,10 +30,18 @@ public interface FileService {
     void fileAnalysis(FileAO fileAO);
 
     /**
-     * 获取文件详情
+     * 获取营业执照详情
      *
      * @param fileId 文件id
-     * @return 文件详情
+     * @return 营业执照详情
      */
-    FileDetailDO getFileDetailByFileId(Long fileId);
+    OperatingLicenceDetailDO getOperatingLicenceDetailByFileId(Long fileId);
+
+    /**
+     * 获取食营证详情
+     *
+     * @param fileId 文件id
+     * @return 营证详情
+     */
+    FoodLicenceDetailDO getFoodLicenceDetailByFileId(Long fileId);
 }

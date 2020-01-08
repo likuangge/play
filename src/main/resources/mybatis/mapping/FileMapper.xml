@@ -20,22 +20,22 @@
         FROM
         t_upload_file
     </select>
-    <!-- 通过文件id获取文件详情 -->
-    <select id="getFileDetailByFileId" parameterType="java.lang.Long" resultType="zuo.li.play.ocr.core.entity.FileDetailDO">
+    <!-- 通过文件id获取营业执照详情 -->
+    <select id="getOperatingLicenceDetailByFileId" parameterType="java.lang.Long" resultType="zuo.li.play.ocr.core.entity.OperatingLicenceDetailDO">
         SELECT *
-        FROM file_detail
+        FROM operating_licence_detail
         WHERE
         file_id = #{fileId}
     </select>
-    <!-- 新增文件详情 -->
-    <insert id="insertFileDetail" parameterType="zuo.li.play.ocr.core.entity.FileDetailDO">
+    <!-- 新增营业执照详情 -->
+    <insert id="insertOperatingLicenceDetail" parameterType="zuo.li.play.ocr.core.entity.OperatingLicenceDetailDO">
         INSERT INTO
-        file_detail(society_code, name, type, principal, business_scope, create_date, operating_period, operating_place, file_id)
+        operating_licence_detail(society_code, name, type, principal, business_scope, create_date, operating_period, operating_place, file_id)
         VALUES(#{societyCode}, #{name}, #{type}, #{principal}, #{businessScope}, #{createDate}, #{operatingPeriod}, #{operatingPlace}, #{fileId})
     </insert>
-    <!-- 更新文件详情 -->
-    <update id="updateFileDetail" parameterType="zuo.li.play.ocr.core.entity.FileDetailDO">
-        UPDATE file_detail
+    <!-- 更新营业执照详情 -->
+    <update id="updateOperatingLicenceDetail" parameterType="zuo.li.play.ocr.core.entity.OperatingLicenceDetailDO">
+        UPDATE operating_licence_detail
         SET
         society_code = #{societyCode},
         name = #{name},
@@ -45,6 +45,39 @@
         create_date = #{createDate},
         operating_period = #{operatingPeriod},
         operating_place = #{operatingPlace}
+        WHERE
+        file_id = #{fileId}
+    </update>
+    <!-- 通过文件id获取食营证详情 -->
+    <select id="getFoodLicenceDetailByFileId" parameterType="java.lang.Long" resultType="zuo.li.play.ocr.core.entity.FoodLicenceDetailDO">
+        SELECT *
+        FROM food_licence_detail
+        WHERE
+        file_id = #{fileId}
+    </select>
+    <!-- 新增食营证详情 -->
+    <insert id="insertFoodLicenceDetail" parameterType="zuo.li.play.ocr.core.entity.FoodLicenceDetailDO">
+        INSERT INTO
+        food_licence_detail(society_code, name, place, principal, operating_project, operating_place, main_business_format, permission_code, daily_management_org, daily_management_person, complaint_phone, certification_authority, issuer, file_id)
+        VALUES(#{societyCode}, #{name}, #{place}, #{principal}, #{operatingProject}, #{operatingPlace}, #{mainBusinessFormat}, #{permissionCode}, #{dailyManagementOrg}, #{dailyManagementPerson}, #{complaintPhone}, #{certificationAuthority}, #{issuer}, #{fileId})
+    </insert>
+    <!-- 更新食营证详情 -->
+    <update id="updateFoodLicenceDetail" parameterType="zuo.li.play.ocr.core.entity.FoodLicenceDetailDO">
+        UPDATE food_licence_detail
+        SET
+        society_code = #{societyCode},
+        name = #{name},
+        place = #{place},
+        principal = #{principal},
+        operating_project = #{operatingProject},
+        operating_place = #{operatingPlace},
+        main_business_format = #{mainBusinessFormat},
+        permission_code = #{permissionCode},
+        daily_management_org = #{dailyManagementOrg},
+        daily_management_person = #{dailyManagementPerson},
+        complaint_phone = #{complaintPhone},
+        certification_authority = #{certificationAuthority},
+        issuer = #{issuer}
         WHERE
         file_id = #{fileId}
     </update>

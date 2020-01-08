@@ -12,7 +12,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class FileDetailDO {
+public class OperatingLicenceDetailDO {
 
     /**
      * 主键id

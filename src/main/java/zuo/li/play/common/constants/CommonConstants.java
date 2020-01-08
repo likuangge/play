@@ -1,4 +1,4 @@
-package zuo.li.play.common;
+package zuo.li.play.common.constants;
 
 /**
  * @Description: 常用变量
